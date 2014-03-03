@@ -1,4 +1,4 @@
-class Hash
+Hash.class_eval do
 
   def self.convert_keys(hash, method = :underscore)
     if hash.is_a?(Array)

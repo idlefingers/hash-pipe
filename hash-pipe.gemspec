@@ -10,6 +10,8 @@ Gem::Specification.new do |s|
   s.summary     = "A small collection of useful hash extensions"
   s.description = ""
 
+  s.add_dependency 'activesupport', '~> 4.0'
+
   s.add_development_dependency "rspec", '~> 2.14'
   s.add_development_dependency "pry", '~> 0.9'
 
