@@ -1,21 +1,14 @@
 Hash.class_eval do
 
   def nested_fetch(path)
-    path = Array(path)
-
-    value = self
-    until path.empty?
-      value = value[path.shift]
-    end
-
-    value
+    Array(path).dup.reduce(self) { |current, key| current[key] }
   end
 
   def nested_delete(path)
-    path = Array(path)
+    path = Array(path).dup
     last_path_element = path.pop
 
-    self.nested_fetch(path).delete last_path_element
+    nested_fetch(path).delete last_path_element
   end
 
 end
