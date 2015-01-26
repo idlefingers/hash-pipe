@@ -33,4 +33,22 @@ describe 'nested_keys' do
     hash['email'].should be_nil
   end
 
+  it 'should not change path array input data on fetch' do
+    hash = { 'bank' => { 'code' => 2 } }
+    path = ['bank', 'code']
+
+    hash.nested_fetch path
+
+    path.should eq ['bank', 'code']
+  end
+
+  it 'should not change path array input data on delete' do
+    hash = { 'bank' => { 'code' => 2 } }
+    path = ['bank', 'code']
+
+    hash.nested_delete path
+
+    path.should eq ['bank', 'code']
+  end
+
 end
