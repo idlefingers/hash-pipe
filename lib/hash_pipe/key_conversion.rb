@@ -1,11 +1,17 @@
 Hash.class_eval do
 
   def self.convert_keys(hash, method = :underscore)
+    if method.is_a? Proc
+      converter = method
+    else
+      converter = -> (str) { str.to_s.send method }
+    end
+
     if hash.is_a?(Array)
-      hash.collect {|h| convert_keys(h, method) }
+      hash.collect {|h| convert_keys(h, converter) }
     elsif hash.is_a?(Hash)
       hash_array = hash.collect do |key,value|
-        [ key.to_s.send(method), convert_keys(value, method) ]
+        [ converter.call(key), convert_keys(value, converter) ]
       end
 
       Hash[hash_array]
