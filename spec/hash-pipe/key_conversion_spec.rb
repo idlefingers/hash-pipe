@@ -35,4 +35,9 @@ describe 'key_conversion' do
     Hash.convert_keys("HELLO WORLD").should eq "HELLO WORLD"
   end
 
+  it 'should support lambdas for conversion methods' do
+    converter = -> (str) { str.sub "hello", "goodbye" }
+    { 'hello' => 'world' }.convert_keys(converter).should eq 'goodbye' => 'world'
+  end
+
 end
