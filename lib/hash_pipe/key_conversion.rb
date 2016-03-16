@@ -25,3 +25,11 @@ Hash.class_eval do
   end
 
 end
+
+Array.class_eval do
+
+  def convert_keys(method = :underscore)
+    Hash.convert_keys self, method
+  end
+
+end

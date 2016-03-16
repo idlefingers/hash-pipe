@@ -27,6 +27,14 @@ describe 'key_conversion' do
     Hash.convert_keys([{ 'HELLO' => 'world' }, { 'FOO' => 'bar' }]).should eq [{ 'hello' => 'world' }, { 'foo' => 'bar' }]
   end
 
+  it "should convert an array of hashes directly on the array" do
+    [{ 'HELLO' => 'world' }, { 'FOO' => 'bar' }].convert_keys.should eq [{ 'hello' => 'world' }, { 'foo' => 'bar' }]
+  end
+
+  it "should only convert hashes in the array" do
+    [{ 'HELLO' => 'world' }, 123].convert_keys.should eq [{ 'hello' => 'world' }, 123]
+  end
+
   it 'should convert arrays of hashes' do
     { 'HELLO' => [{ 'MR' => 'world' }] }.convert_keys.should eq 'hello' => [{'mr' => 'world'}]
   end
