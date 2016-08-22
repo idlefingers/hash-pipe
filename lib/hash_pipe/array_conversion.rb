@@ -17,11 +17,9 @@ Array.class_eval do
   #   }
   # }
   #
-  def nest
-    self.each do |elm|
-      raise ArgumentError, "Name too big" if elm.nil?
-    end
-    reverse.inject { |sum, key| {key => sum} }
+  def to_nested_hash
+    raise ArgumentError, "Values in array can't be nil" if any? &:nil?
+    reverse.inject { |hash, key| {key => hash} }
   end
 end
 
