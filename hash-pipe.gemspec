@@ -2,7 +2,7 @@ $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "hash-pipe"
-  s.version     = "0.4.1"
+  s.version     = "0.5.0"
   s.authors     = ["Damien Timewell"]
   s.email       = ["mail@damientimewell.com"]
   s.licenses    = ['MIT']
